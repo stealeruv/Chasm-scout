@@ -23,7 +23,7 @@
 
 ### Prerequisites
 
-- Visit : https://console.groq.com/keys (If it is not working in default, try it on Incognito tab)
+- Visit : https://console.groq.com/keys
 - Copy the API key after signing in
 - Save it somewhere for now
 
