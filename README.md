@@ -112,7 +112,7 @@ ufw allow 3001
 docker pull chasmtech/chasm-scout:latest
 ```
 ```bash
-docker run -d --restart=always --env-file ./.env -p 3001:3001 --name scout chasmtech/chasm-scout:latest
+docker run -d --restart=always --env-file ./.env -p 3001:3001 --name scout chasmtech/chasm-scout
 ```
 ```bash
 docker logs scout
