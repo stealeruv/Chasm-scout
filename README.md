@@ -106,6 +106,12 @@ GROQ_API_KEY=PASTE GROK API KEY HERE
 ```
 - Save this file using `Ctrl + X` then `Y` and then press `Enter`
 ```bash
+sudo apt install ufw
+```
+```bash
+ufw enable
+```
+```bash
 ufw allow 3001
 ```
 ```bash
