@@ -1,4 +1,4 @@
-### Chasm-scout Incentivised Node
+# Chasm-scout Incentivised Node
 
 ## Project Information
 
@@ -112,7 +112,7 @@ ufw allow 3001
 docker pull chasmtech/chasm-scout:latest
 ```
 ```bash
-docker run -d --restart=always --env-file ./.env -p 3001:3001 --name scout chasmtech/chasm-scout
+docker run -d --restart=always --env-file ./.env -p 3001:3001 --name scout chasmtech/chasm-scout:latest
 ```
 ```bash
 docker logs scout
