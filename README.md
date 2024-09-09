@@ -93,14 +93,13 @@ services:
       PORT: 3001
       LOGGER_LEVEL: debug
       ORCHESTRATOR_URL: https://orchestrator.chasm.net
-      SCOUT_NAME: "SCOUT 1"
+      SCOUT_NAME: ""
       SCOUT_UID: 
       WEBHOOK_API_KEY: 
       WEBHOOK_URL: http://<YOUR_PUBLIC_IP>:3001
       MODEL: gemma2-9b-it
-      PROVIDERS: groq,openrouter # remove openrouter if not in use
+      PROVIDERS: groq
       GROQ_API_KEY: 
-      OPENROUTER_API_KEY: # delete this line if you're not using it
 
   scout2:
     image: chasmtech/chasm-scout:0.0.5
@@ -112,7 +111,7 @@ services:
       PORT: 3002
       LOGGER_LEVEL: debug
       ORCHESTRATOR_URL: https://orchestrator.chasm.net
-      SCOUT_NAME: "SCOUT 2"
+      SCOUT_NAME: ""
       SCOUT_UID: 
       WEBHOOK_API_KEY: 
       WEBHOOK_URL: http://<YOUR_PUBLIC_IP>:3002
