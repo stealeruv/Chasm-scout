@@ -74,48 +74,69 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ```
 mkdir ChasmNode && cd ChasmNode
 ```
+## Run Multiple Scouts
+
 ```bash
 nano .env
 ```
 - Copy this format and paste the required value there, you copied earlier from different websites
-```bash
-PORT=3001
-LOGGER_LEVEL=debug
-
-ORCHESTRATOR_URL=https://orchestrator.chasm.net
-SCOUT_NAME=ccon
-SCOUT_UID=PASTE UID
-WEBHOOK_API_KEY=PASTE API KEY
-WEBHOOK_URL=http://your_server_ip:3001/
-PROVIDERS=groq
-MODEL=gemma2-9b-it
-GROQ_API_KEY=PASTE GROK API KEY HERE
-```
-- Save this file using `Ctrl + X` then `Y` and then press `Enter`
 
 ```bash
-docker pull chasmtech/chasm-scout:latest
+services:
+  scout1:
+    image: chasmtech/chasm-scout:0.0.5
+    container_name: scout1
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      LOGGER_LEVEL: debug
+      ORCHESTRATOR_URL: https://orchestrator.chasm.net
+      SCOUT_NAME: "SCOUT 1"
+      SCOUT_UID: 
+      WEBHOOK_API_KEY: 
+      WEBHOOK_URL: http://<YOUR_PUBLIC_IP>:3001
+      MODEL: gemma2-9b-it
+      PROVIDERS: groq,openrouter # remove openrouter if not in use
+      GROQ_API_KEY: 
+      OPENROUTER_API_KEY: # delete this line if you're not using it
+
+  scout2:
+    image: chasmtech/chasm-scout:0.0.5
+    container_name: scout1
+    restart: always
+    ports:
+      - "3002:3002"
+    environment:
+      PORT: 3002
+      LOGGER_LEVEL: debug
+      ORCHESTRATOR_URL: https://orchestrator.chasm.net
+      SCOUT_NAME: "SCOUT 2"
+      SCOUT_UID: 
+      WEBHOOK_API_KEY: 
+      WEBHOOK_URL: http://<YOUR_PUBLIC_IP>:3002
+      PROVIDERS: groq
+      MODEL: gemma2-9b-it
+      GROQ_API_KEY: 
 ```
-```bash
-docker run -d --restart=always --env-file ./.env -p 3001:3001 --name scout chasmtech/chasm-scout
+** Start Node **
 ```
-```bash
-docker logs scout
+docker compose up -d
 ```
+** Check Los **
+```
+docker logs scout1 -f
+```
+** Health Check **
+
 ```bash
 curl localhost:3001
 ```
-```bash
-source./ChasmNode/.env
-curl -X POST \
-     -H "Content-Type: application/json" \
-     -H "Authorization: Bearer $WEBHOOK_API_KEY" \
-     -d '{"body":"{\"model\":\"gemma2-9b-it\",\"messages\":[{\"role\":\"system\",\"content\":\"You are a helpful assistant.\"}]}"}' \
-     $WEBHOOK_URL
-```
+
 Monitor the node
 ```
-docker stats scout
+docker stats scout1
 ```
 - Done !!
 ---
