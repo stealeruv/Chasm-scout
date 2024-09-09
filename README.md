@@ -119,15 +119,15 @@ services:
       MODEL: gemma2-9b-it
       GROQ_API_KEY: 
 ```
-** Start Node **
+**Start Node**
 ```
 docker compose up -d
 ```
-** Check Los **
+**Check Logs**
 ```
 docker logs scout1 -f
 ```
-** Health Check **
+**Health Check**
 
 ```bash
 curl localhost:3001
