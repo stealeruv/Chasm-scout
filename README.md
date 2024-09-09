@@ -76,18 +76,6 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 ```bash
-sudo apt install screen -y
-```
-```bash
- curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
-```
-- Now paste the command, you copied earlier from ngrok website (example : `ngrok config add-authtoken yourauthtoken`)
-```bash
-screen ngrok http 3001
-```
-- Go to forwarding section and copy the first URL and save it somewhere (It will look like `https://1bXX.XX.XXX.XXX.ngrok-free.app`)
-- Press `Ctrl + A + D` to detach from screen session
-```bash
 nano .env
 ```
 - Copy this format and paste the required value there, you copied earlier from different websites
@@ -99,21 +87,13 @@ ORCHESTRATOR_URL=https://orchestrator.chasm.net
 SCOUT_NAME=ccon
 SCOUT_UID=PASTE UID
 WEBHOOK_API_KEY=PASTE API KEY
-WEBHOOK_URL=PASTE NGROK FREE APP URL LINK HERE
+WEBHOOK_URL=http://your_server_ip:3001/
 PROVIDERS=groq
 MODEL=gemma2-9b-it
 GROQ_API_KEY=PASTE GROK API KEY HERE
 ```
 - Save this file using `Ctrl + X` then `Y` and then press `Enter`
-```bash
-sudo apt install ufw
-```
-```bash
-ufw enable
-```
-```bash
-ufw allow 3001
-```
+
 ```bash
 docker pull chasmtech/chasm-scout:latest
 ```
@@ -127,12 +107,16 @@ docker logs scout
 curl localhost:3001
 ```
 ```bash
-source ./.env
+source./ChasmNode/.env
 curl -X POST \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer $WEBHOOK_API_KEY" \
      -d '{"body":"{\"model\":\"gemma2-9b-it\",\"messages\":[{\"role\":\"system\",\"content\":\"You are a helpful assistant.\"}]}"}' \
      $WEBHOOK_URL
+```
+Monitor the node
+```
+docker stats scout
 ```
 - Done !!
 ---
