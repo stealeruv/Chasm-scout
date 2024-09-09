@@ -35,9 +35,6 @@
 - Copy the value of `SCOUT_UID` and `WEBHOOK_API_KEY`
 - Save it a notepad
 
-- Now, Go to : https://dashboard.ngrok.com/signup
-- Go to `Your Authtoken` section
-- Click on `Show Authtoken` button in the corner, then copy the command and save it somewhere in a notepad
 
 ---
 ### Installation
