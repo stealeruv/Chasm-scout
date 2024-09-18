@@ -74,7 +74,7 @@ mkdir ChasmNode && cd ChasmNode
 ## Run Multiple Scouts
 
 ```bash
-nano .env
+nano compose.yaml
 ```
 - Copy this format and paste the required value there, you copied earlier from different websites
 
